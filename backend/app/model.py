@@ -3,10 +3,18 @@ import joblib
 import pandas as pd
 from app.schemas import HouseFeatures
 
-# Resolve the path to the model joblib file relative to this script
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # HPP/backend
-ROOT_DIR = os.path.dirname(BASE_DIR)                                 # HPP
-MODEL_PATH = os.path.join(ROOT_DIR, "notebooks", "house_price_model.joblib")
+# Resolve the path to the model joblib file
+APP_DIR = os.path.dirname(os.path.abspath(__file__)) # HPP/backend/app
+LOCAL_MODEL_PATH = os.path.join(APP_DIR, "house_price_model.joblib")
+
+BASE_DIR = os.path.dirname(APP_DIR) # HPP/backend
+ROOT_DIR = os.path.dirname(BASE_DIR) # HPP
+LEGACY_MODEL_PATH = os.path.join(ROOT_DIR, "notebooks", "house_price_model.joblib")
+
+if os.path.exists(LOCAL_MODEL_PATH):
+    MODEL_PATH = LOCAL_MODEL_PATH
+else:
+    MODEL_PATH = LEGACY_MODEL_PATH
 
 # Global model variable
 _model = None

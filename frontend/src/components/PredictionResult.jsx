@@ -35,7 +35,7 @@ export default function PredictionResult({ price, error }) {
         <div className="error-icon">⚠️</div>
         <h3>Prediction Failed</h3>
         <p className="error-msg">{error}</p>
-        <p className="hint">Make sure the Python backend server is running on port 8000.</p>
+        <p className="hint">Make sure the backend server is running and accessible.</p>
       </div>
     );
   }
